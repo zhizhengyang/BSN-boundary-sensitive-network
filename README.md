@@ -1,5 +1,5 @@
 # BSN-boundary-sensitive-network
-
+zhizhengyang report
 This repo holds the codes of paper: "BSN: Boundary Sensitive Network for Temporal Action Proposal Generation", which is accepted in ECCV 2018. You can also find pytorch-version implementation in [[BSN.pytorch]](https://github.com/wzmsltw/BSN-boundary-sensitive-network.pytorch).
 
 [[Arxiv Preprint]](http://arxiv.org/abs/1806.02964)
