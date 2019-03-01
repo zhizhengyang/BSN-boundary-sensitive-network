@@ -9,11 +9,11 @@ def binary_logistic_loss(gt_scores,pred_anchors):
     gt_scores = tf.reshape(gt_scores,[-1])
     pred_anchors = tf.reshape(pred_anchors,[-1])
     
-    pmask = tf.cast(gt_scores>0.5,dtype=tf.float32)
-    num_positive = tf.reduce_sum(pmask)
-    num_entries = tf.cast(tf.shape(gt_scores)[0],dtype=tf.float32)    
+    pmask = tf.cast(gt_scores>0.5,dtype=tf.float32)#b_i = sign(g_i - theata_iop)设置大于IOU的为1，小于IOU的为0,拉开差距
+    num_positive = tf.reduce_sum(pmask)#正样本的数量
+    num_entries = tf.cast(tf.shape(gt_scores)[0],dtype=tf.float32)#总样本的数量    
     ratio = num_entries/num_positive
-    coef_0 = 0.5*(ratio)/(ratio-1)
+    coef_0 = 0.5*(ratio)/(ratio-1)#a = l_w/l^-
     coef_1 = coef_0*(ratio-1)
     
     loss = coef_1*pmask*tf.log(pred_anchors)+coef_0*(1.0-pmask)*tf.log(1.0-pred_anchors)
